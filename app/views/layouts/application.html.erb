@@ -12,6 +12,78 @@
   </head>
 
   <body>
+    <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+        <nav class="nav navbar-left">
+        </nav>
+        
+        <nav>
+          <ul class="navbar-nav ml-auto">
+            <% if user_signed_in? %>
+            
+            <li>
+              <%= link_to"cat_life",root_path %>
+            </li>
+            
+            <li>
+            <%= link_to user_path(current_user), class: 'nav-link text-dark' do %>
+              <i class="fas fa-home"></i> Home
+            <% end %>
+         </li>
+        
+         <li>
+            <%= link_to users_path,class: 'nav-link text-dark' do %>
+            <i class="fas fa-users"></i>Users
+            <% end %>
+         </li>
+      
+         <li>
+            <%= link_to posts_path,class: 'nav-link text-dark' do %>
+            <i class="fas fa-book-open"></i></i>Posts
+            <% end %>
+         </li>
+      
+         <li>
+            <%= link_to destroy_user_session_path,method: :delete do%>
+            <i class="fas fa-sign-out-alt"></i>Log out
+            <% end %>
+         </li>
+      
+      <% else %>
+         <li>
+           <%= link_to"posts",root_path %>
+        </li>
+        <li>
+          <%= link_to root_path, class: 'nav-link text-dark' do %>
+              <i class="fas fa-home"></i> Home
+          <% end %>
+        </li>
+        
+        <li>
+          <%= link_to about_path, class: 'nav-link text-dark' do %>
+             <i class="fas fa-link"></i> About
+          <% end %>
+        </li>
+        
+        <li>
+          <%= link_to new_user_registration_path, class: 'nav-link text-dark' do %>
+            <i class="fas fa-user-plus"></i> Sign up
+          <% end %>
+        </li>
+       
+         <li>
+          <%= link_to new_user_session_path, class: 'nav-link text-dark' do %>
+           <i class="fas fa-sign-in-alt"></i> Log in
+          <% end %>
+        </li>
+      <% end %>
+        </ul>
+      </nav>
+    </div>  
+  </header>
     <%= yield %>
   </body>
+    <footer>
+      <p>CopyRight Nishihara</p>
+    </footer>
 </html>

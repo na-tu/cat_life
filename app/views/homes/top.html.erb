@@ -1,2 +1,29 @@
-<h1>Homes#top</h1>
-<p>Find me in app/views/homes/top.html.erb</p>
+<div class="container">
+  <div class="row">
+	  <div class="top-text">
+
+<div>
+          <%= flash[:notice]%>
+        </div>
+
+<body>
+  <header>
+    <span>★ねこライフ★</span>
+  </header>
+  
+  <main>
+    <h1>「”ねこ”ありきのライフを満喫しよう♪」</h1>
+    
+     <div>
+       <%= link_to "Log in", new_user_session_path %>
+	   </div>
+	   
+	   <div>
+	     <%= link_to "Sign up", new_user_registration_path %>
+     </div>
+
+  </main>
+</body>
+</div>
+</div>
+</div>
