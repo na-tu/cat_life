@@ -9,8 +9,7 @@
 
   <h2>my page</h2>
     <tbody>
-      <%= image_tag @user.get_profile_image, size: "100x100" %>
-
+      <%= image_tag @user.get_profile_image(100, 100), size: "100x100"%>
       <th>name</th>
       <th><%= @user.name %></th><br>
       <th>introduction</th>
@@ -46,7 +45,7 @@
       <% @posts.each do |user| %>
   <tr>
     <td>
-      <%= image_tag @user.get_profile_image, size: "100x100" %>
+      <%= image_tag @user.get_profile_image(100, 100), size: "100x100"%>
     </td>
 
   <td><%= user.name%></td>

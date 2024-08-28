@@ -10,7 +10,7 @@
 
 <h2>User info</h2>
   <tbody>
-       <%= image_tag @user.get_profile_image , size: "100x100"%>
+       <%= image_tag @user.get_profile_image(100, 100), size: "100x100"%>
 
    
   <br><th>name</th>
@@ -23,11 +23,11 @@
   <% end %>
   </tbody>
 
-<h2>New posts</h2>
- <% if @posts.errors.any? %>
-            <%= @posts.errors.count %>errors prohibited this obj from being saved:
+<h2>New post</h2>
+ <% if @post.errors.any? %>
+            <%= @post.errors.count %>errors prohibited this obj from being saved:
               <ul>
-                <% @posts.errors.full_messages.each do |message| %>
+                <% @post.errors.full_messages.each do |message| %>
                   <li><%= message %></li>
                  <% end %>
               </ul>
@@ -38,9 +38,11 @@
       <%= f.text_field :title %>
     <h5>Opinion</h5>
       <%= f.text_area :body %>
-      <%= f.submit 'Create Post' %>
-      <% end %>
-       </div>    
+      <h5>cat image</h5>
+ 　　　　　 <%= f.file_field :image, accept: "image/*" %>
+       <%= f.submit 'Create Post' %>
+       <% end %>
+    </div>    
 
 <div class="col-md-8 offset-md-1">
   <h2>posts</h2>
@@ -58,7 +60,7 @@
  <tr>
    <td>
      <%=link_to user_path(post.user) do %>
-        <%=image_tag @user.get_profile_image, size: "100x100" %>
+        <%=image_tag post.user.get_profile_image(100, 100), size: "100x100" %>
      <% end %>
    </td>
 
