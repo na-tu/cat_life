@@ -26,7 +26,9 @@
              <%= f.text_field :title %>
            <h5>Opinion</h5>
              <%= f.text_area :body %>
-               <%= f.submit 'Create Post' %>
+          　<h5>cat image</h5>
+      　　　　 <%= f.file_field :image, accept: "image/*" %>
+          <%= f.submit 'Create Post' %>
          <% end %>
        </div>
 
@@ -42,7 +44,7 @@
                  </tr>
                </thead>
 
-      <% @posts.each do |user| %>
+      <% @users.each do |user| %>
   <tr>
     <td>
       <%= image_tag @user.get_profile_image(100, 100), size: "100x100"%>

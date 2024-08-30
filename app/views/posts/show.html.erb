@@ -9,7 +9,7 @@
 
 <h2>my page</h2>
   <tbody>
-    <!--%= image_tag @user.get_profile_image , size: "100x100"%-->
+    <%= image_tag @user.get_profile_image(100, 100), size: "100x100"%>
 
     <th>name</th>
     <th><%= @user.name %></th><br>
@@ -36,6 +36,8 @@
       <%= f.text_field :title %>
     <h5>Opinion</h5>
       <%= f.text_area :body %>
+       <h5>cat image</h5>
+ 　　　　　 <%= f.file_field :image, accept: "image/*" %>
       <%= f.submit 'Create Book' %>
       <% end %>
     </div>    
@@ -47,10 +49,15 @@
          <%= link_to @post.title,post_path %>
         </P> 
          <%=link_to user_path(@post.user) do %>
-         <!--%= image_tag @user.get_profile_image, size: "100x100" %-->
          <% end %>
          
        <p><%= @post.body %></p>
+       
+       <% if @post.image.attached? %>
+         <p><%= image_tag @post.image.variant(resize: "100x100") %></p>
+       <% else %>
+         <p>画像がありません</p>
+       <% end %>
        
         <span>
      <th><%= link_to @user.name,user_path(@post.user) %></th>

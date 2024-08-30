@@ -3,7 +3,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
-       flash[:notice] = "You have created book successfully."
+       flash[:notice] = "新しく投稿しました！"
     redirect_to post_path(@post)
     else
     @user = current_user#elseの下にこの記述が
@@ -39,7 +39,7 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-     flash[:notice] = "You have updated post successfully."
+     flash[:notice] = "更新しました！"
     redirect_to post_path(@post.id)
     else
     render :edit
@@ -56,7 +56,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :body)
+    params.require(:post).permit(:title, :body, :image,)
   end
   
 end
