@@ -30,7 +30,7 @@
         <% end %>
       </ul>
   <% end %>
-  
+
   <%= form_with model: @post_new do |f| %>
     <h5>Title</h5>
       <%= f.text_field :title %>
@@ -40,27 +40,44 @@
  　　　　　 <%= f.file_field :image, accept: "image/*" %>
       <%= f.submit 'Create Book' %>
       <% end %>
-    </div>    
+    </div>
 
 <div class="col-md-8 offset-md-1">
 <h2>post detail</h2>
     <div>
         <p>
          <%= link_to @post.title,post_path %>
-        </P> 
+        </P>
          <%=link_to user_path(@post.user) do %>
          <% end %>
-         
+
        <p><%= @post.body %></p>
-       
+
        <% if @post.image.attached? %>
          <p><%= image_tag @post.image.variant(resize: "100x100") %></p>
        <% else %>
          <p>画像がありません</p>
        <% end %>
-       
+
+<div>
+  <p>コメント件数：<%= @post.post_comments.count %></p>
+  <% @post.post_comments.each do |post_comment| %>
+    <p><%= image_tag post_comment.user.get_profile_image(100,100) %></p>
+    <%= post_comment.user.name %>
+    <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
+  <% end %>
+</div>
+
+  <%= form_with model: [@post, @post_comment]  do |f| %>
+    <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+    <%= f.submit "送信する" %>
+  <% end %>
+</div>
+
         <span>
      <th><%= link_to @user.name,user_path(@post.user) %></th>
+     <div>
+
    </span>
 
      <% if current_user==@post.user %>

@@ -24,7 +24,7 @@ class PostsController < ApplicationController
     @user = @post.user
     @posts = @user.posts
     @post_new = Post.new
-    #redirect_to post_path(@post)
+    @post_comment = PostComment.new
   end
 
   def edit

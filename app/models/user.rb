@@ -3,11 +3,12 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-         
- has_many :posts, dependent: :destroy         
+
+ has_many :posts, dependent: :destroy
+ has_many :post_comments, dependent: :destroy
  has_one_attached :profile_image
   #profile_imageという名前でActiveStorageでプロフィール画像を保存できるように設定
-  
+
 def get_profile_image(width, height)
   unless profile_image.attached?
     file_path = Rails.root.join('app/assets/images/sample-author1.jpg')
