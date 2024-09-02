@@ -84,6 +84,21 @@
           <%= link_to 'Edit', edit_post_path(@post.id) %>
           <%= link_to 'Destroy', post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
      <% end %>
+
+     <% if @post.favorited_by?(current_user) %>
+    <p>
+      <%= link_to post_favorite_path(@post), method: :delete do %>
+        ♥<%= @post.favorites.count %> いいね
+      <% end %>
+    </p>
+    <% else %>
+    <p>
+      <%= link_to post_favorite_path(@post), method: :post do %>
+        ♡<%= @post.favorites.count %> いいね
+      <% end %>
+    </p>
+  <% end %>
+
     <div>
       <%= flash[:success] %>
     </div>
